@@ -49,8 +49,8 @@ export const gameReducer = (state: GameState, action: GameActions) => {
         ...state,
         userResult: 0,
         computerResult: 0,
-        userChoice: -1,
-        computerChoice: -1,
+        userChoice: 0,
+        computerChoice: 0,
         onPause: false,
       };
     default:

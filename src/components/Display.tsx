@@ -1,17 +1,18 @@
 import React, { useContext } from "react";
-import pierre from "../assets/images/pierre.png";
-import feuille from "../assets//images/feuille.png";
-import ciseaux from "../assets/images/ciseaux.png";
+import pierre from "../assets/pierre.png";
+import feuille from "../assets/feuille.png";
+import ciseaux from "../assets/ciseaux.png"
 import GameContext from "../context/gameContext";
 
-
-
-const Display = () => {
-  const gameContext = useContext(GameContext);
-  const {userResult,computerResult,userChoice,computerChoice} = gameContext.gameState
-
-  console.log(userChoice)
+interface Props {
+  userChoice: number;
+  computerChoice: number;
   
+}
+
+const Display = ({userChoice, computerChoice}:Props) => {
+  const gameContext = useContext(GameContext);
+  const {userResult,computerResult} = gameContext.gameState
   const userImage = (
     <img
       className="img-responsive"
@@ -45,20 +46,31 @@ const Display = () => {
   );
 
   return (
-    <div className="columns">
+    <>
+      <div className="score">
+        <p>Vous</p>
+        <p>Ordinateur</p>
+        <p id="score-joueur">{userResult}</p>
+        <p id="score-ordinateur">{computerResult}</p>
+        <div id="reset">Recommencer</div>
+      </div>
+      <div className="action">
+        <p id="message">A vous de jouer !</p>
+        <div id="next">Tour suivant</div>
+      </div>
+    
+    <div className="choix" style={{paddingBottom:'10px'}}>
       <div className="column col-2 col-mx-auto text-center">
-        <h1 id="user">VOUS</h1>
-        <h2>{userResult}</h2>
+        
         {userChoice !== -1 && userImage}
       </div>
 
       <div className="column col-2 col-mx-auto text-center">
-        <h1 id="computer" className="computer">
-          ORDINATEUR       </h1>
-        <h2 className="computer">{computerResult}</h2>
+        
         {computerChoice !== -1 && computerImage}
       </div>
-    </div>
+  </div>
+  </>
   );
 };
 

@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
+import Logo from "../assets/Logo";
 import Display from "../components/Display";
 import Play from "../components/Play";
 import Result from "../components/Result";
@@ -7,8 +8,8 @@ import GameContext from "../context/gameContext";
 const Home = () => {
   const gameContext = useContext(GameContext);
   const { userResult, computerResult, nbJeu } = gameContext.gameState;
-  const [userChoice, setUserChoice] = useState<number>(-1);
-  const [computerChoice, setComputerChoice] = useState<number>(-1);
+  const [userChoice, setUserChoice] = useState<number>(0);
+  const [computerChoice, setComputerChoice] = useState<number>(0);
   const [onPause, setOnPause] = useState<boolean>(false);
   const [round, setRound] = useState<number>(0);
 
@@ -52,8 +53,8 @@ const Home = () => {
           type: "reset_game",
         });
 
-        setUserChoice(-1);
-        setComputerChoice(-1);
+        setUserChoice(0);
+        setComputerChoice(0);
         setOnPause(false);
       }, 2500);
     }
@@ -61,11 +62,18 @@ const Home = () => {
 
   return (
     <div className="App">
-      {!onPause && <Play setChoice={setChoice} />}
-
-      <Result />
-
-      <Display  />
+      
+      <div className="logo">
+        <div style={{ width: "200px", alignSelf: "center" }}>
+          <Logo />
+        </div>
+      </div>
+      <div className="main">
+        <Display userChoice={userChoice} computerChoice={computerChoice} />
+        <Result />
+        {!onPause && <Play setChoice={setChoice} />}
+      </div>
+      {/*<Display userChoice={userChoice} computerChoice={computerChoice} />*/}
     </div>
   );
 };
