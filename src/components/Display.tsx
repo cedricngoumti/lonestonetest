@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import pierre from "../assets/images/pierre.png";
 import feuille from "../assets//images/feuille.png";
 import ciseaux from "../assets/images/ciseaux.png";

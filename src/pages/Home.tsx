@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {  useState } from "react";
 import Display from "../components/Display";
 import Play from "../components/Play";
 import Result from "../components/Result";
@@ -11,35 +11,32 @@ const Home = () => {
   const [onPause, setOnPause] = useState<boolean>(false);
   const [round, setRound] = useState<number>(0);
 
-  const compareChoice = () => {
-  
-    if (
-      (computerChoice === 0 && userChoice === 2) ||
-      (computerChoice === 1 && userChoice === 0) ||
-      (computerChoice === 2 && userChoice === 1)
-    ) {
-        setComputerResult(prevStep => prevStep + 1)
-        setRound(prevStep => prevStep + 1)
-        newRound()
-        
-    } else if (computerChoice !== userChoice) {
-        setUserResult(prevStep => prevStep + 1)
-        setRound(prevStep => prevStep + 1)
-        newRound()
-        console.log('choice2')
-      
-    }
-  };
+ 
 
   const setChoice = (value: string) => {
-    setUserChoice(value === "Pierre" ? 0 : value === "Feuille" ? 1 : 2);
-    setComputerChoice(Math.floor(Math.random() * 3));
-    
-    compareChoice();
+    const userChoice1 = value === "Pierre" ? 0 : value === "Feuille" ? 1 : 2
+    const computerChoice1  = Math.floor(Math.random() * 3)
+    setUserChoice(userChoice1);
+    setComputerChoice(computerChoice1);
+
+    if (
+        (computerChoice1 === 0 && userChoice1 === 2) ||
+        (computerChoice1 === 1 && userChoice1 === 0) ||
+        (computerChoice1 === 2 && userChoice1 === 1)
+      ) {
+          setComputerResult(prevStep => prevStep + 1)
+          setRound(prevStep => prevStep + 1)
+            
+      } else if (computerChoice1 !== userChoice1) {
+          setUserResult(prevStep => prevStep + 1)
+          setRound(prevStep => prevStep + 1)
+          
+      }
+      newRound() 
   };
 
   const newRound = () => {
-    if (userResult === 3 || computerResult === 3) {
+    if (userResult === 2 || computerResult === 2) {
       setOnPause(true);
       setTimeout(() => {
         setUserResult(0);
@@ -51,9 +48,8 @@ const Home = () => {
     }
   };
 
-  useEffect(()=>{
-    
-  },[])
+ 
+  
 
   return (
     <div className="App">
