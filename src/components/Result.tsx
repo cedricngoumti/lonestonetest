@@ -1,22 +1,24 @@
-import React from 'react'
-interface Props{
-    userResult:number;
-    computerResult:number;
-}
-const Result = ({userResult,computerResult}:Props) => {
-    let result = null;
-    if (userResult === 3) {
-      result = <div className='result bg-success text-light d-flex'>Vous avez GagnÉ !</div>
-    }
-    if (computerResult === 3) {
-      result = <div className='result bg-error text-light d-flex'>Perdu...</div>
-    }
+import React, { useContext } from "react";
+import GameContext from "../context/gameContext";
 
-  return (
-    <div>
-        {result}
+const Result = () => {
+  const gameContext = useContext(GameContext);
+  const { userResult, computerResult,nbJeu } = gameContext.gameState;
+  
+  let result = null;
+
+  if (userResult === nbJeu) {
+    result = (
+      <div className="result bg-success text-light d-flex">
+        Vous avez Gagné !
       </div>
-  )
-}
+    );
+  }
+  if (computerResult === nbJeu) {
+    result = <div className="result bg-error text-light d-flex">Perdu...</div>;
+  }
 
-export default Result
+  return <div>{result}</div>;
+};
+
+export default Result;

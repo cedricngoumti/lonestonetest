@@ -1,16 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 import pierre from "../assets/images/pierre.png";
 import feuille from "../assets//images/feuille.png";
 import ciseaux from "../assets/images/ciseaux.png";
+import GameContext from "../context/gameContext";
 
 interface Props {
   userChoice: number;
   computerChoice: number;
-  userResult:number;
-  computerResult:number;
+  
 }
 
-const Display = ({ userChoice, computerChoice,userResult,computerResult }: Props) => {
+const Display = ({ userChoice, computerChoice }: Props) => {
+  const gameContext = useContext(GameContext);
+  const {userResult,computerResult} = gameContext.gameState
   const userImage = (
     <img
       className="img-responsive"
