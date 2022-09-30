@@ -6,7 +6,7 @@ import GameContext from "../context/gameContext";
 
 const Home = () => {
   const gameContext = useContext(GameContext);
-  const {userResult, computerResult,nbJeu} = gameContext.gameState
+  const { userResult, computerResult, nbJeu } = gameContext.gameState;
   const [userChoice, setUserChoice] = useState<number>(-1);
   const [computerChoice, setComputerChoice] = useState<number>(-1);
   const [onPause, setOnPause] = useState<boolean>(false);
@@ -15,6 +15,14 @@ const Home = () => {
   const setChoice = (value: string) => {
     const userChoice1 = value === "Pierre" ? 0 : value === "Feuille" ? 1 : 2;
     const computerChoice1 = Math.floor(Math.random() * 3);
+    gameContext.gameDispatch({
+      type: "play",
+      payload: {
+        userChoice: userChoice1,
+        computerChoice: computerChoice1,
+      },
+    });
+
     setUserChoice(userChoice1);
     setComputerChoice(computerChoice1);
     if (
@@ -38,13 +46,12 @@ const Home = () => {
 
   useEffect(() => {
     if (userResult === nbJeu || computerResult === nbJeu) {
-      
       setOnPause(true);
       setTimeout(() => {
         gameContext.gameDispatch({
-          type:'reset_game'
-        })
-        
+          type: "reset_game",
+        });
+
         setUserChoice(-1);
         setComputerChoice(-1);
         setOnPause(false);
@@ -58,7 +65,7 @@ const Home = () => {
 
       <Result />
 
-      <Display userChoice={userChoice} computerChoice={computerChoice} />
+      <Display  />
     </div>
   );
 };

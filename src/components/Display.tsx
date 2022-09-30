@@ -4,15 +4,14 @@ import feuille from "../assets//images/feuille.png";
 import ciseaux from "../assets/images/ciseaux.png";
 import GameContext from "../context/gameContext";
 
-interface Props {
-  userChoice: number;
-  computerChoice: number;
-  
-}
 
-const Display = ({ userChoice, computerChoice }: Props) => {
+
+const Display = () => {
   const gameContext = useContext(GameContext);
-  const {userResult,computerResult} = gameContext.gameState
+  const {userResult,computerResult,userChoice,computerChoice} = gameContext.gameState
+
+  console.log(userChoice)
+  
   const userImage = (
     <img
       className="img-responsive"

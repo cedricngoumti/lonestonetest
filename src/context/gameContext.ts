@@ -13,6 +13,10 @@ export interface GameState {
 
 export interface GameActions {
   type: "you_win" | "computer_win" | "reset_game" | "play";
+  payload?: {
+    userChoice?: number;
+    computerChoice?: number;
+  };
 }
 
 export const inistialState: GameState = {
@@ -25,11 +29,17 @@ export const inistialState: GameState = {
 };
 
 export const gameReducer = (state: GameState, action: GameActions) => {
+  const item = action?.payload 
   const items = { ...state };
 
   switch (action?.type) {
     case "play":
-      return { ...state, userChoice: items.userResult + 1 };
+      
+      return {
+        ...state,
+       userChoice:items?.userChoice,
+       computerChoice:items?.computerChoice
+      };
     case "you_win":
       return { ...state, userResult: items.userResult + 1 };
     case "computer_win":
@@ -41,7 +51,7 @@ export const gameReducer = (state: GameState, action: GameActions) => {
         computerResult: 0,
         userChoice: -1,
         computerChoice: -1,
-        onPause:false
+        onPause: false,
       };
     default:
       return state;
