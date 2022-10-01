@@ -1,24 +1,30 @@
 import React, { useContext } from "react";
 import GameContext from "../context/gameContext";
+import Confetti from "react-confetti";
 
 const Result = () => {
   const gameContext = useContext(GameContext);
-  const { userResult, computerResult,nbJeu } = gameContext.gameState;
-  
+  const { userResult, computerResult, nbJeu } = gameContext.gameState;
+
   let result = null;
 
   if (userResult === nbJeu) {
     result = (
-      <div className="result bg-success text-light d-flex">
-        Vous avez Gagné !
-      </div>
+      <>
+        <Confetti />
+        <h1 className="result success">Vous avez Gagné !</h1>
+      </>
     );
   }
   if (computerResult === nbJeu) {
-    result = <div className="result bg-error text-light d-flex">Perdu...</div>;
+    result = <div className="result">Perdu...</div>;
   }
 
-  return <div>{result}</div>;
+  return (
+    <>
+      <div>{result}</div>
+    </>
+  );
 };
 
 export default Result;

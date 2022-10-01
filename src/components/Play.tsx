@@ -1,15 +1,47 @@
-import React from "react";
+import React,{useContext} from "react";
+import GameContext from "../context/gameContext";
 import Button from "./ui/Button";
 
-interface Props {
-  setChoice: (e: any) => void;
-}
+const Play = () => {
+  const gameContext = useContext(GameContext);
+  
+  
+  const setChoice = (value: string) => {
+    const userChoice1 = value === "Pierre" ? 0 : value === "Feuille" ? 1 : 2;
+    const computerChoice1 = Math.floor(Math.random() * 3);
 
-const Play = ({ setChoice }: Props) => {
+    gameContext.gameDispatch({
+      type: "user_choose",
+      payload: userChoice1,
+    });
+    gameContext.gameDispatch({
+      type: "computer_choose",
+      payload: computerChoice1,
+    });
+
+    if (
+      (computerChoice1 === 0 && userChoice1 === 2) ||
+      (computerChoice1 === 1 && userChoice1 === 0) ||
+      (computerChoice1 === 2 && userChoice1 === 1)
+    ) {
+      gameContext.gameDispatch({
+        type: "computer_win",
+      });
+    } else if (computerChoice1 !== userChoice1) {
+      gameContext.gameDispatch({
+        type: "you_win",
+      });
+    }
+
+    gameContext.gameDispatch({
+      type: "add_history",
+      payload: "test",
+    });
+  };
+
     
   const handleChoice = (e: any) => {
     const value = e.target.textContent;
-    console.log(value)
     setChoice(value);
   };
 
@@ -30,11 +62,8 @@ const Play = ({ setChoice }: Props) => {
               <p>Ciseaux</p>
             </Button>
           </div>
-
-          
         </div>
     </>
-   
   );
 };
 
