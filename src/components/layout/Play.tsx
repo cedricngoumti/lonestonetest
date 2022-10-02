@@ -1,6 +1,6 @@
 import React,{useContext} from "react";
-import GameContext from "../context/gameContext";
-import Button from "./ui/Button";
+import GameContext from "../../context/gameContext";
+import Button from "../ui/Button";
 
 const Play = () => {
   const gameContext = useContext(GameContext);
@@ -33,10 +33,7 @@ const Play = () => {
       });
     }
 
-    gameContext.gameDispatch({
-      type: "add_history",
-      payload: "test",
-    });
+    
   };
 
     

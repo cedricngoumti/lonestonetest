@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
-import pierre from "../assets/pierre.png";
-import feuille from "../assets/feuille.png";
-import ciseaux from "../assets/ciseaux.png";
-import GameContext from "../context/gameContext";
+import pierre from "../../assets/pierre.png";
+import feuille from "../../assets/feuille.png";
+import ciseaux from "../../assets/ciseaux.png";
+import GameContext from "../../context/gameContext";
 
 
 const Display = () => {

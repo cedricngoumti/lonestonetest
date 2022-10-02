@@ -21,6 +21,19 @@
   flex-direction: column;
   align-items: center;
 }
+.main-left{
+  background-color: var(--back);
+  font-family: sans-serif;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.main-contain{
+  display: flex;
+  flex-direction: row;
+  gap:20px;
+}
 .success{
   color:var(--primary);
 }
@@ -68,6 +81,10 @@
 
 .message {
   font-size: 25px;
+}
+.historique {
+  font-size: 15px;
+  padding: 5px;
 }
 
 .next {
