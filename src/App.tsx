@@ -1,13 +1,25 @@
-import React from 'react'
-import 'spectre.css';
-import Home from './pages/Home'
-import './App.css'
-
+import React, { useReducer } from "react";
+import {
+  GameContextProvider,
+  gameReducer,
+  inistialState,
+} from "./context/gameContext";
+import Home from "./pages/Home";
+import "./App.css";
 
 const App = () => {
-  return (
-    <div><Home /></div>
-  )
-}
+  const [gameState, gameDispatch] = useReducer(gameReducer, inistialState);
 
-export default App
+  const gameContextValues = {
+    gameState,
+    gameDispatch,
+  };
+
+  return (
+    <GameContextProvider value={gameContextValues}>
+      <Home />
+    </GameContextProvider>
+  );
+};
+
+export default App;

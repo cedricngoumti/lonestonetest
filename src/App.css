@@ -1,14 +1,159 @@
-.computer {
-  opacity: 0.7;
+:root {
+  --primary: #ff8466;
+  --secondary: #ff8800;
+  --back: #f1f1f1;
+  --action: #ff6565;
+  --border-radius: 15px;
+  --btn-padding: 20px;
 }
 
-.btn, .result {
-  height: 20vh;
-  font-size: 2em;
-  margin-bottom: 1em;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.result {
-  justify-content: center;
+.main {
+  background-color: var(--back);
+  font-family: sans-serif;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
   align-items: center;
+}
+.main-left{
+  background-color: var(--back);
+  font-family: sans-serif;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.main-contain{
+  display: flex;
+  flex-direction: row;
+  gap:20px;
+}
+.success{
+  color:var(--primary);
+}
+
+
+.logo {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  display: grid;
+  grid-template-columns: repeat(2, 200px);
+  gap: 10px;
+  text-align: center;
+  font-size: 25px;
+  background-color: white;
+  padding: var(--btn-padding);
+  border-radius: 15px;
+}
+.score {
+  margin-top: 5px;
+  margin-bottom: 10px;
+  display: grid;
+  grid-template-columns: repeat(2, 200px);
+  gap: 10px;
+  text-align: center;
+  font-size: 25px;
+  background-color: white;
+  padding: var(--btn-padding);
+  border-radius: 15px;
+}
+
+.reset {
+  font-size: 12px;
+  grid-column: span 2;
+  cursor: pointer;
+}
+
+.reset:hover {
+  color: var(--action);
+}
+
+.action {
+  
+  text-align: center;
+}
+
+.message {
+  font-size: 25px;
+}
+.historique {
+  font-size: 15px;
+  padding: 5px;
+}
+
+.next {
+  margin-top: 5px;
+  
+  background-color: var(--action);
+  color: white;
+  border-radius: var(--border-radius);
+  visibility: hidden;
+  cursor: pointer;
+}
+
+.next.active {
+  visibility: visible;
+}
+
+.jeu {
+  border-top: 1px solid black;
+  padding-top: 10px;
+  gap: 200px;
+}
+.choix{
+  display: flex;
+  gap: 100px;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  font-size: 25px;
+  padding: var(--btn-padding);
+}
+
+.btn-joueur,
+.btn-ordi {
+  border-radius: 15px;
+  transition: all 0.2s ease;
+}
+
+.btn-joueur {
+  cursor: pointer;
+  background-color: white;
+}
+
+.btn-joueur:hover {
+  color: var(--primary);
+  border-color: var(--primary);
+}
+
+.button p {
+  margin-left: 10px;
+}
+
+
+
+.btn-joueur.desactivated {
+  background-color: var(--back);
+  cursor: default;
+}
+
+.btn-joueur.desactivated:hover,
+.btn-joueur.active {
+  color: var(--secondary);
+}
+
+.btn-joueur.active {
+  background-color: var(--primary);
+}
+
+.btn-ordi.active {
+  background-color: var(--secondary);
 }
